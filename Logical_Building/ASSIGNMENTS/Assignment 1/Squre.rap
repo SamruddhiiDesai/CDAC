@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+class PositiveNo{
+    public static void main(String[] args) {
+               Scanner scanner = new Scanner(System.in);
+
+       
+        System.out.print("Enter a side: ");
+        int side = scanner.nextInt();
+
+        int area=side*side;
+        
+            System.out.println("The Area is:"+area);
+       
+            
+        
+
+        scanner.close();
+    }
+}
