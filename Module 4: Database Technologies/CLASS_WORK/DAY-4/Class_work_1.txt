@@ -1,0 +1,306 @@
+CREATE TABLE Employee (
+    empid INT PRIMARY KEY,         
+    firstname VARCHAR(50),         
+    lastname VARCHAR(50),         
+    salary DECIMAL(10, 2),         
+    hiredate DATE                  
+);
+
+INSERT INTO Employee (empid, firstname, lastname, salary, hiredate) 
+VALUES 
+
+(3, 'Mike', 'Johnson', 45000.31, '2021-07-30'),
+(4, 'Emily', 'Davis', 55000.04, '2022-02-10'),
+(45, 'lily', 'David', 75000.14, '2022-02-11');
+
+
+
+select concat(upper(substr(firstname,1,1)), lower(substr(firstname,2))) as initcap from employee where empid=1;
++---------+
+| initcap |
++---------+
+| Newly   |
++---------+
+
+select substr(firstname,-5) from employee where length(firstname)>=5;
++----------------------+
+| substr(firstname,-5) |
++----------------------+
+| NEWLY                |
+| Emily                |
++----------------------+
+select lpad(instr(firstname,'e'),15,' ') from employee;
++-----------------------------------+
+| lpad(instr(firstname,'e'),15,' ') |
++-----------------------------------+
+|               2                   |
+|               4                   |
+|               4                   |
+|               1                   |
++-----------------------------------+
+
+select 'Welcome' as "massage" from dual;
++---------+
+| massage |
++---------+
+| Welcome |
++---------+
+select char(65 using utf8) from dual;
++---------------------+
+| char(65 using utf8) |
++---------------------+
+| A                   |
++---------------------+
+
+select *from employee where soundex(firstname)=soundex('Leemin'); //ryme word
++-------+-----------+----------+----------+------------+
+| empid | firstname | lastname | salary   | hiredate   |
++-------+-----------+----------+----------+------------+
+|     5 | Leemin    | Ho       | 54333.12 | 2022-10-10 |
+|     6 | Leemun    | Ho       | 54333.12 | 2022-10-10 |
++-------+-----------+----------+----------+------------+
+
+select salary from employee;
++----------+
+| salary   |
++----------+
+| 75000.00 |
+| 55236.65 |
+| 45000.31 |
+| 55000.04 |
+| 54333.12 |
+| 54333.12 |
++----------+
+select round(salary,1) from employee;
++-----------------+
+| round(salary,1) |
++-----------------+
+|         75000.0 |
+|         55236.7 |
+|         45000.3 |
+|         55000.0 |
+|         54333.1 |
+|         54333.1 |
++-----------------+
+
+select truncate(salary,1) from employee
+    -> ;
++--------------------+
+| truncate(salary,1) |
++--------------------+
+|            75000.0 |
+|            55236.6 |
+|            45000.3 |
+|            55000.0 |
+|            54333.1 |
+|            54333.1 |
++--------------------+
+
+select ceil(salary) from employee;
++--------------+
+| ceil(salary) |
++--------------+
+|        75000 |
+|        55237 |
+|        45001 |
+|        55001 |
+|        54334 |
+|        54334 |
++--------------+
+
+select floor(salary) from employee;
++---------------+
+| floor(salary) |
++---------------+
+|         75000 |
+|         55236 |
+|         45000 |
+|         55000 |
+|         54333 |
+|         54333 |
++---------------+
+
+select truncate(3.6,0),floor(3.6),truncate(-3.6,0),floor(-3.6) from dual;
++-----------------+------------+------------------+-------------+
+| truncate(3.6,0) | floor(3.6) | truncate(-3.6,0) | floor(-3.6) |
++-----------------+------------+------------------+-------------+
+|               3 |          3 |               -3 |          -4 |
++-----------------+------------+------------------+-------------+
+
+select sign((select salary from employee where empid=2)-(select salary from employee where empid=1)) as sal;
++------+
+| sal  |
++------+
+|   -1 |
++------+
+
+select sign((select salary from employee where empid=6)-(select salary from employee where empid=5)) as sal;
++------+
+| sal  |
++------+
+|    0 |
++------+
+
+select sign((select salary from employee where empid=1)-(select salary from employee where empid=2)) as sal;
++------+
+| sal  |
++------+
+|    1 |
++------+
+
+select (select salary from employee where empid=2)-(select salary from employee where empid=1) as sal;
++-----------+
+| sal       |
++-----------+
+| -19763.35 |
++-----------+
+select mod(9,5)from dual;
++----------+
+| mod(9,5) |
++----------+
+|        4 |
++----------+
+select mod(9.21,5.3)from dual;
++---------------+
+| mod(9.21,5.3) |
++---------------+
+|          3.91 |
++---------------+
+
+select sqrt(81) from dual;
++----------+
+| sqrt(81) |
++----------+
+|        9 |
++----------+
+select sqrt(81.5) from dual;
++-------------------+
+| sqrt(81.5)        |
++-------------------+
+| 9.027735042633894 |
++-------------------+
+
+select sqrt(-81) from dual;
++-----------+
+| sqrt(-81) |
++-----------+
+|      NULL |
++-----------+
+
+select power(10,3) from dual;
++-------------+
+| power(10,3) |
++-------------+
+|        1000 |
++-------------+
+
+select power(10,1/3) from dual;
++-------------------+
+| power(10,1/3)     |
++-------------------+
+| 2.154434688378294 |
++-------------------+
+
+select power(10,-3) from dual;
++--------------+
+| power(10,-3) |
++--------------+
+|        0.001 |
++--------------+
+
+select power(-10,3) from dual;
++--------------+
+| power(-10,3) |
++--------------+
+|        -1000 |
++--------------+
+
+select abs(-10) from dual;   //always return positive value
++----------+
+| abs(-10) |
++----------+
+|       10 |
++----------+
+
+select lpad(abs(sign(-10)),2,' ') as Num from dual;
++------+
+| Num  |
++------+
+|  1   |
++------+
+
+select sysdate(),now() from dual;
++---------------------+---------------------+
+| sysdate()           | now()               |
++---------------------+---------------------+
+| 2024-10-12 13:41:40 | 2024-10-12 13:41:40 |
++---------------------+---------------------+
+
+select sysdate(),now(),sleep(10),sysdate(),now() from dual;
++---------------------+---------------------+-----------+---------------------+---------------------+
+| sysdate()           | now()               | sleep(10) | sysdate()           | now()               |
++---------------------+---------------------+-----------+---------------------+---------------------+
+| 2024-10-12 13:43:08 | 2024-10-12 13:43:08 |         0 | 2024-10-12 13:43:18 | 2024-10-12 13:43:08 |
++---------------------+---------------------+-----------+---------------------+---------------------+
+
+select adddate(sysdate(),1) from dual;  //add 24 hr  ie. 1 day
++----------------------+
+| adddate(sysdate(),1) |
++----------------------+
+| 2024-10-13 13:45:03  |
++----------------------+
+
+select adddate(sysdate(),-1) from dual;  //yesterday
++-----------------------+
+| adddate(sysdate(),-1) |
++-----------------------+
+| 2024-10-11 13:46:08   |
++-----------------------+
+
+select hiredate from employee;
++------------+
+| hiredate   |
++------------+
+| 2021-03-10 |
+| 2019-04-20 |
+| 2021-07-30 |
+| 2022-02-10 |
+| 2022-10-10 |
+| 2022-10-10 |
++------------+
+
+select last_day(hiredate) from employee;
++--------------------+
+| last_day(hiredate) |
++--------------------+
+| 2021-03-31         |
+| 2019-04-30         |
+| 2021-07-31         |
+| 2022-02-28         |
+| 2022-10-31         |
+| 2022-10-31         |
++--------------------+
+
+mysql>select replace(replace(replace(replace(replace(replace(lower(firstname),'a',''),'e',''),'i',''),'o',''),'u',''),'y','') as rem from employee;
++------+
+| rem  |
++------+
+| nwl  |
+| jn   |
+| mk   |
+| ml   |
+| lmn  |
+| lmn  |
++------+
+
+select 3.14 as day,
+    -> floor(3.14*24)as hr,
+    -> floor((3.14*24 - floor(3.14*24))*60) as min,
+    -> round((((3.14*24 - floor(3.14*24))*60) - floor((3.14*24 - floor(3.14*24))*60))*60) as sec;
++------+----+-----+-----+
+| day  | hr | min | sec |
++------+----+-----+-----+
+| 3.14 | 75 |  21 |  36 |
++------+----+-----+-----+
+
+
