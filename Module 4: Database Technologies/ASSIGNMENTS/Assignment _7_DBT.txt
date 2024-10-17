@@ -1,0 +1,140 @@
+Assignment –7
+
+Summarizing Data with Aggregate Functions.
+
+
+mysql> SELECT * FROM ORDERS;
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1990-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1990-10-03 | 2001 | 1001 |
+| 3002 | 1900.10 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1990-10-04 | 2004 | 1002 |
+| 3008 | 4723.00 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.02 sec)
+
+mysql> SELECT * FROM CUSTOMER;
+ERROR 1146 (42S02): Table 'cdac.customer' doesn't exist
+mysql> SELECT * FROM CUSTOMERS;
++------+----------+----------+--------+------+
+| Cnum | Cname    | City     | Rating | Snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | London   |    100 | 1001 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
+| 2007 | Pereira  | Rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.01 sec)
+
+mysql> SELECT * FROM SALESPEOPLE;
++------+---------+-----------+------+
+| Snum | Sname   | City      | Comm |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Serres  | San Jose  | 0.13 |
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1003 | Axelrod | New York  | 0.10 |
++------+---------+-----------+------+
+
+1) Write a query that counts all orders for October 3.
+mysql> select count(onum) from orders where odate='1990-10-03';
++-------------+
+| count(onum) |
++-------------+
+|           5 |
++-------------+
+2) Write a query that counts the number of different non-NULL city values in the 
+Customers table.
+mysql> select count(distinct city) from customers;
++----------------------+
+| count(distinct city) |
++----------------------+
+|                    4 |
++----------------------+
+3) Write a query that selects each customer’s smallest order.
+
+mysql> select sum(amt) from orders group by cnum;
++----------+
+| sum(amt) |
++----------+
+|  1116.85 |
+|   767.19 |
+|  1900.10 |
+|  5160.45 |
+|  1713.23 |
+|  1385.70 |
+| 14614.88 |
++----------+
+7 rows in set (0.00 sec)
+
+mysql> select min(amt_or) from (select sum(amt) from orders group by cnum);
+ERROR 1248 (42000): Every derived table must have its own alias
+mysql> select min(amt_or) from (select sum(amt) as amt_or from orders group by cnum);
+ERROR 1248 (42000): Every derived table must have its own alias
+mysql> select min(amt_or) from (select sum(amt) as amt_or from orders group by cnum)as exam;
++-------------+
+| min(amt_or) |
++-------------+
+|      767.19 |
++-------------+
+
+mysql> select cnum from orders where amt=(select min(amt_or) from (select sum(amt) as amt_or from orders group by cnum)as exam);
++------+
+| cnum |
++------+
+| 2001 |
++------+
+1 row in set (0.00 sec)
+//final
+mysql> select cname from customers where cnum=(select cnum from orders where amt=(select min(amt_or) from (select sum(amt) as amt_or from orders group by cnum)as exam));
++---------+
+| cname   |
++---------+
+| Hoffman |
++---------+
+4) Write a query that selects the first customer, in alphabetical order, whose name 
+begins with G.
+
+mysql> select cname from customers where cname like 'G%' order by cname limit 1;
++----------+
+| cname    |
++----------+
+| Giovanni |
++----------+
+5) Write a query that selects the highest rating in each city.
+
+mysql> select city,max(rating) from customers group by city;
++----------+-------------+
+| city     | max(rating) |
++----------+-------------+
+| London   |         100 |
+| Rome     |         200 |
+| San Jose |         300 |
+| Berlin   |         300 |
++----------+-------------+
+
+6) Write a query that counts the number of salespeople registering orders for each 
+day. (If a salesperson has more than one order on a given day, he or she should be 
+counted only once.).
+
+mysql> select odate,count(distinct snum) from orders group by odate order by
+ odate;
++------------+----------------------+
+| odate      | count(distinct snum) |
++------------+----------------------+
+| 1990-10-03 |                    4 |
+| 1990-10-04 |                    2 |
+| 1990-10-05 |                    1 |
+| 1990-10-06 |                    2 |
++------------+----------------------+
