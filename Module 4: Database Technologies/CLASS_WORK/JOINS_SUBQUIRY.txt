@@ -1,0 +1,328 @@
+mysql> select * from emp;
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|     1 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|     2 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|     3 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|     4 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|     5 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |
+|     6 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|     7 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 |    0 |     30 |
+|     8 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
+|     9 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |
+|    10 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
+|    11 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|    12 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | NULL |  200 |     20 |
++-------+--------+-----------+------+------------+------+------+--------+
+
+EQUIJOIN 
+
+mysql> select dname,ename from emp,dept
+    -> where dept.deptno=emp.deptno
+    -> order by 1;
++------------+--------+
+| dname      | ename  |
++------------+--------+
+| ACCOUNTING | KING   |
+| ACCOUNTING | CLARK  |
+| RESEARCH   | JONES  |
+| RESEARCH   | FORD   |
+| RESEARCH   | SMITH  |
+| RESEARCH   | SCOTT  |
+| SALES      | BLAKE  |
+| SALES      | MARTIN |
+| SALES      | ALLEN  |
+| SALES      | TURNER |
+| SALES      | JAMES  |
+| SALES      | WARD   |
++------------+--------+
+
+NOT EQUIJOIN 
+
+mysql> select dname ,ename from emp,dept
+    -> where dept.deptno != emp.deptno
+    -> order by 1;
++------------+--------+
+| dname      | ename  |
++------------+--------+
+| ACCOUNTING | BLAKE  |
+| ACCOUNTING | JONES  |
+| ACCOUNTING | MARTIN |
+| ACCOUNTING | ALLEN  |
+| ACCOUNTING | TURNER |
+| ACCOUNTING | JAMES  |
+| ACCOUNTING | WARD   |
+| ACCOUNTING | FORD   |
+| ACCOUNTING | SMITH  |
+| ACCOUNTING | SCOTT  |
+| RESEARCH   | KING   |
+| RESEARCH   | BLAKE  |
+| RESEARCH   | CLARK  |
+| RESEARCH   | MARTIN |
+| RESEARCH   | ALLEN  |
+| RESEARCH   | TURNER |
+| RESEARCH   | JAMES  |
+| RESEARCH   | WARD   |
+| SALES      | KING   |
+| SALES      | CLARK  |
+| SALES      | JONES  |
+| SALES      | FORD   |
+| SALES      | SMITH  |
+| SALES      | SCOTT  |
++------------+--------+
+
+OUTER JOIN
+RIGHT JOIN
+
+mysql> select dname,ename from emp right outer join
+    -> dept on(dept.deptno=emp.deptno);
++------------+--------+
+| dname      | ename  |
++------------+--------+
+| ACCOUNTING | CLARK  |
+| ACCOUNTING | KING   |
+| RESEARCH   | SCOTT  |
+| RESEARCH   | SMITH  |
+| RESEARCH   | FORD   |
+| RESEARCH   | JONES  |
+| SALES      | WARD   |
+| SALES      | JAMES  |
+| SALES      | TURNER |
+| SALES      | ALLEN  |
+| SALES      | MARTIN |
+| SALES      | BLAKE  |
++------------+--------+
+
+LEFT JOIN
+mysql> select dname,ename from emp left outer join
+    -> dept on(dept.deptno=emp.deptno);
++------------+--------+
+| dname      | ename  |
++------------+--------+
+| ACCOUNTING | KING   |
+| SALES      | BLAKE  |
+| ACCOUNTING | CLARK  |
+| RESEARCH   | JONES  |
+| SALES      | MARTIN |
+| SALES      | ALLEN  |
+| SALES      | TURNER |
+| SALES      | JAMES  |
+| SALES      | WARD   |
+| RESEARCH   | FORD   |
+| RESEARCH   | SMITH  |
+| RESEARCH   | SCOTT  |
++------------+--------+
+
+FULL OUTER JOIN
+
+mysql> select dname,ename from emp right outer join
+    -> dept on(dept.deptno=emp.deptno)
+    -> UNION
+    -> select dname,ename from emp left outer join
+    -> dept on(dept.deptno=emp.deptno);
++------------+--------+
+| dname      | ename  |
++------------+--------+
+| ACCOUNTING | CLARK  |
+| ACCOUNTING | KING   |
+| RESEARCH   | SCOTT  |
+| RESEARCH   | SMITH  |
+| RESEARCH   | FORD   |
+| RESEARCH   | JONES  |
+| SALES      | WARD   |
+| SALES      | JAMES  |
+| SALES      | TURNER |
+| SALES      | ALLEN  |
+| SALES      | MARTIN |
+| SALES      | BLAKE  |
++------------+--------+
+
+COUNT ENAME FROM FULL OUTER JOIN
+mysql> select count(dname) from
+    ->  (select dname,ename from emp right outer join
+    ->  dept on(dept.deptno=emp.deptno)
+    ->  UNION
+    -> select dname,ename from emp left outer join
+    -> dept on(dept.deptno=emp.deptno)) as dddeee;
++--------------+
+| count(dname) |
++--------------+
+|           12 |
++--------------+
+
+CARTESIAN JOIN CROSS JOIN 
+
+mysql> SELECT ENAME,DNAME FROM EMP,DEPT;
++--------+------------+
+| ENAME  | DNAME      |
++--------+------------+
+| KING   | SALES      |
+| KING   | RESEARCH   |
+| KING   | ACCOUNTING |
+| BLAKE  | SALES      |
+| BLAKE  | RESEARCH   |
+| BLAKE  | ACCOUNTING |
+| CLARK  | SALES      |
+| CLARK  | RESEARCH   |
+| CLARK  | ACCOUNTING |
+| JONES  | SALES      |
+| JONES  | RESEARCH   |
+| JONES  | ACCOUNTING |
+| MARTIN | SALES      |
+| MARTIN | RESEARCH   |
+| MARTIN | ACCOUNTING |
+| ALLEN  | SALES      |
+| ALLEN  | RESEARCH   |
+| ALLEN  | ACCOUNTING |
+| TURNER | SALES      |
+| TURNER | RESEARCH   |
+| TURNER | ACCOUNTING |
+| JAMES  | SALES      |
+| JAMES  | RESEARCH   |
+| JAMES  | ACCOUNTING |
+| WARD   | SALES      |
+| WARD   | RESEARCH   |
+| WARD   | ACCOUNTING |
+| FORD   | SALES      |
+| FORD   | RESEARCH   |
+| FORD   | ACCOUNTING |
+| SMITH  | SALES      |
+| SMITH  | RESEARCH   |
+| SMITH  | ACCOUNTING |
+| SCOTT  | SALES      |
+| SCOTT  | RESEARCH   |
+| SCOTT  | ACCOUNTING |
++--------+------------+
+
+SELF JOIN
+
+SLOWEST 
+
+mysql> select a.ename ,b.ename from emp b, emp a
+    -> where a.mgr=b.mgr;
++--------+--------+
+| ename  | ename  |
++--------+--------+
+| BLAKE  | JONES  |
+| BLAKE  | CLARK  |
+| BLAKE  | BLAKE  |
+| CLARK  | JONES  |
+| CLARK  | CLARK  |
+| CLARK  | BLAKE  |
+| JONES  | JONES  |
+| JONES  | CLARK  |
+| JONES  | BLAKE  |
+| MARTIN | WARD   |
+| MARTIN | JAMES  |
+| MARTIN | TURNER |
+| MARTIN | ALLEN  |
+| MARTIN | MARTIN |
+| ALLEN  | WARD   |
+| ALLEN  | JAMES  |
+| ALLEN  | TURNER |
+| ALLEN  | ALLEN  |
+| ALLEN  | MARTIN |
+| TURNER | WARD   |
+| TURNER | JAMES  |
+| TURNER | TURNER |
+| TURNER | ALLEN  |
+| TURNER | MARTIN |
+| JAMES  | WARD   |
+| JAMES  | JAMES  |
+| JAMES  | TURNER |
+| JAMES  | ALLEN  |
+| JAMES  | MARTIN |
+| WARD   | WARD   |
+| WARD   | JAMES  |
+| WARD   | TURNER |
+| WARD   | ALLEN  |
+| WARD   | MARTIN |
+| FORD   | SCOTT  |
+| FORD   | FORD   |
+| SMITH  | SMITH  |
+| SCOTT  | SCOTT  |
+| SCOTT  | FORD   |
++--------+--------+
+
+
+select a.ename employee, b.ename manager from emp a, emp b
+ where a.mgr = b.empno;
+
+
+SUB-QUIRY
+
+NAME OF EMPLOYEE WHO HAS MAX SAL
+mysql> select ename from emp where sal =(select max(sal) from emp);
++-------+
+| ename |
++-------+
+| KING  |
++-------+
+
+
+2ND HIGHEST SAL
+mysql> select max(sal) from emp where sal<
+    -> (select max(sal) from emp);
++----------+
+| max(sal) |
++----------+
+|     3000 |
++----------+
+mysql> select sal from emp order by sal desc limit 1,1;
++------+
+| sal  |
++------+
+| 3000 |
++------+
+
+5TH HIEGHEST
+
+mysql> select sal from emp order by sal desc limit 4,1;
++------+
+| sal  |
++------+
+| 2450 |
++------+
+
+NTH HIGHEST
+select sal from emp order by sal desc limit N-1,1;
+
+
+DISPLAY ALL ROWS WHO RECIEVE SAL=ANY OF MANAGER
+mysql> select * from emp
+    -> where sal=any
+    -> (select sal from emp
+    -> where job='MANAGER');
++-------+-------+---------+------+------------+------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+-------+---------+------+------------+------+------+--------+
+|     2 | BLAKE | MANAGER | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|     3 | CLARK | MANAGER | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|     4 | JONES | MANAGER | 7839 | 1981-04-02 | 2975 | NULL |     20 |
++-------+-------+---------+------+------------+------+------+--------+
+
+
+mysql> select * from emp
+    -> where sal >=
+    -> (select min(sal) from emp where job='MANAGER');
++-------+-------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+-------+-----------+------+------------+------+------+--------+
+|     1 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|     2 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|     3 | CLARK | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|     4 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|    10 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
++-------+-------+-----------+------+------------+------+------+--------+
+mysql> select* from emp where sal>
+    -> (select max(sal) from emp
+    -> where job='MANAGER');
++-------+-------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+-------+-----------+------+------------+------+------+--------+
+|     1 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|    10 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
++-------+-------+-----------+------+------------+------+------+--------+
+
+

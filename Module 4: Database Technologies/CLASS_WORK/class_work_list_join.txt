@@ -1,0 +1,714 @@
+CREATE TABLE emp (
+    EMPNO INT,
+    ENAME VARCHAR(10),
+    JOB VARCHAR(10),
+    MGR INT,
+    HIREDATE DATE,
+    SAL INT,
+    COMM INT,
+    DEPTNO INT
+);
+INSERT INTO emp VALUES
+(1, 'KING', 'PRESIDENT', NULL, '1981-11-17', 5000, NULL, 10),
+(2, 'BLAKE', 'MANAGER', 7839, '1981-05-01', 2850, NULL, 30),
+(3, 'CLARK', 'MANAGER', 7839, '1981-06-09', 2450, NULL, 10),
+(4, 'JONES', 'MANAGER', 7839, '1981-04-02', 2975, NULL, 20),
+(5, 'MARTIN', 'SALESMAN', 7698, '1981-09-28', 1250, 1400, 30),
+(6, 'ALLEN', 'SALESMAN', 7698, '1981-02-20', 1600, 300, 30),
+(7, 'TURNER', 'SALESMAN', 7698, '1981-09-08', 1500, 0, 30),
+(8, 'JAMES', 'CLERK', 7698, '1981-12-03', 950, NULL, 30),
+(9, 'WARD', 'SALESMAN', 7698, '1981-02-22', 1250, 500, 30),
+(10, 'FORD', 'ANALYST', 7566, '1981-12-03', 3000, NULL, 20),
+(11, 'SMITH', 'CLERK', 7902, '1980-12-17', 800, NULL, 20),
+(12, 'SCOTT', 'ANALYST', 7566, '1982-12-09', NULL, 200, 20),
+(13, 'ADAMS', 'CLERK', 7788, '1983-01-12', 1100, NULL, 20),
+(14, 'MILLER', 'CLERK', 7782, '1982-01-23', 1300, NULL, 10);
+
+ select * from emp;
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|     1 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |
+|     2 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|     3 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|     4 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|     5 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |
+|     6 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|     7 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 |    0 |     30 |
+|     8 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
+|     9 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |
+|    10 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
+|    11 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|    12 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | NULL |  200 |     20 |
++-------+--------+-----------+------+------------+------+------+--------+
+
+
+mysql> select * from emp where sal=null;
+Empty set (0.00 sec)
+
+mysql> select * from emp where comm=null;
+Empty set (0.00 sec)
+
+mysql> select * from emp where comm != null;
+Empty set (0.00 sec)
+
+mysql> select sal+comm from emp;
++----------+
+| sal+comm |
++----------+
+|     NULL |
+|     NULL |
+|     NULL |
+|     NULL |
+|     2650 |
+|     1900 |
+|     1500 |
+|     NULL |
+|     1750 |
+|     NULL |
+|     NULL |
+|     NULL |
++----------+
+mysql> select sal+ ifnull(comm,0) from emp;
++---------------------+
+| sal+ ifnull(comm,0) |
++---------------------+
+|                5000 |
+|                2850 |
+|                2450 |
+|                2975 |
+|                2650 |
+|                1900 |
+|                1500 |
+|                 950 |
+|                1750 |
+|                3000 |
+|                 800 |
+|                NULL |
++---------------------+
+12 rows in set (0.00 sec)
+
+mysql> select ifnull(sal,0) + ifnull(comm,0) from emp;
++--------------------------------+
+| ifnull(sal,0) + ifnull(comm,0) |
++--------------------------------+
+|                           5000 |
+|                           2850 |
+|                           2450 |
+|                           2975 |
+|                           2650 |
+|                           1900 |
+|                           1500 |
+|                            950 |
+|                           1750 |
+|                           3000 |
+|                            800 |
+|                            200 |
++--------------------------------+
+12 rows in set (0.00 sec)
+
+mysql> select ifnull(sal,0) + ifnull(comm,0) as allnull from emp;
++---------+
+| allnull |
++---------+
+|    5000 |
+|    2850 |
+|    2450 |
+|    2975 |
+|    2650 |
+|    1900 |
+|    1500 |
+|     950 |
+|    1750 |
+|    3000 |
+|     800 |
+|     200 |
++---------+
+12 rows in set (0.00 sec)
+
+mysql> select ifnull(sal,null) from emp;
++------------------+
+| ifnull(sal,null) |
++------------------+
+|             5000 |
+|             2850 |
+|             2450 |
+|             2975 |
+|             1250 |
+|             1600 |
+|             1500 |
+|              950 |
+|             1250 |
+|             3000 |
+|              800 |
+|             NULL |
++------------------+
+12 rows in set (0.00 sec)
+
+mysql> select ifnull(sal,0) from emp;
++---------------+
+| ifnull(sal,0) |
++---------------+
+|          5000 |
+|          2850 |
+|          2450 |
+|          2975 |
+|          1250 |
+|          1600 |
+|          1500 |
+|           950 |
+|          1250 |
+|          3000 |
+|           800 |
+|             0 |
++---------------+
+
+mysql> select ifnull(sal,(select avg(sal) from emp)) as salavg from emp;
++-----------+
+| salavg    |
++-----------+
+| 5000.0000 |
+| 2850.0000 |
+| 2450.0000 |
+| 2975.0000 |
+| 1250.0000 |
+| 1600.0000 |
+| 1500.0000 |
+|  950.0000 |
+| 1250.0000 |
+| 3000.0000 |
+|  800.0000 |
+| 2147.7273 |
++-----------+
+mysql> select greatest(sal,1500) from emp;
++--------------------+
+| greatest(sal,1500) |
++--------------------+
+|               5000 |
+|               2850 |
+|               2450 |
+|               2975 |
+|               1500 |
+|               1600 |
+|               1500 |
+|               1500 |
+|               1500 |
+|               3000 |
+|               1500 |
+|               NULL |
++--------------------+
+
+mysql> select greatest(sal*0.1,300) as bonus from emp;
++-------+
+| bonus |
++-------+
+| 500.0 |
+| 300.0 |
+| 300.0 |
+| 300.0 |
+| 300.0 |
+| 300.0 |
+| 300.0 |
+| 300.0 |
+| 300.0 |
+| 300.0 |
+| 300.0 |
+|  NULL |
++-------+
+
+mysql> select greatest(sal,1000,1500,2000,1000) from emp;
++-----------------------------------+
+| greatest(sal,1000,1500,2000,1000) |
++-----------------------------------+
+|                              5000 |
+|                              2850 |
+|                              2450 |
+|                              2975 |
+|                              2000 |
+|                              2000 |
+|                              2000 |
+|                              2000 |
+|                              2000 |
+|                              3000 |
+|                              2000 |
+|                              NULL |
++-----------------------------------+
+
+mysql> set @x=greatest(1000,2000,1456,1234);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @x;
++------+
+| @x   |
++------+
+| 2000 |
++------+
+mysql> set @f='SAMRUDDHI';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SET @l='DESAI';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set @full=concat(@f,' ',@l);
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @full;
++-----------------+
+| @full           |
++-----------------+
+| SAMRUDDHI DESAI |
++-----------------+
+mysql> select least(sal,3000) from emp;
++-----------------+
+| least(sal,3000) |
++-----------------+
+|            3000 |
+|            2850 |
+|            2450 |
+|            2975 |
+|            1250 |
+|            1600 |
+|            1500 |
+|             950 |
+|            1250 |
+|            3000 |
+|             800 |
+|            NULL |
++-----------------+
+
+mysql> select sal,count(sal) from emp;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'cdac.emp.SAL'; this is incompatible with sql_mode=only_full_group_by
+
+mysql> select ename,count(sal) from emp;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'cdac.emp.ENAME'; this is incompatible with sql_mode=only_full_group_by
+
+mysql> select count(*),sal from emp order by deptno;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #2 of SELECT list contains nonaggregated column 'cdac.emp.SAL'; this is incompatible with sql_mode=only_full_group_by
+
+mysql> select * from emp where sal > avg(sal);
+ERROR 1111 (HY000): Invalid use of group function
+
+mysql> select ename,sal , deptno,sum(sal) from emp;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'cdac.emp.ENAME'; this is incompatible with sql_mode=only_full_group_by
+
+mysql> select * from sum( sal) from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sum( sal) from emp' at line 1
+
+mysql> select sal ,count( sal) from emp;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'cdac.emp.SAL'; this is incompatible with sql_mode=only_full_group_by
+
+
+
+mysql> select sum(sal) from emp;
++----------+
+| sum(sal) |
++----------+
+|    23625 |
++----------+
+
+mysql> select sal from emp;
++------+
+| sal  |
++------+
+| 5000 |
+| 2850 |
+| 2450 |
+| 2975 |
+| 1250 |
+| 1600 |
+| 1500 |
+|  950 |
+| 1250 |
+| 3000 |
+|  800 |
+| NULL |
++------+
+mysql> select sum(sal) from emp;
++----------+
+| sum(sal) |
++----------+
+|    23625 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select sum(ifnull(sal,0)) from emp;
++--------------------+
+| sum(ifnull(sal,0)) |
++--------------------+
+|              23625 |
++--------------------+
+
+mysql> select avg(sal) from emp;
++-----------+
+| avg(sal)  |
++-----------+
+| 2147.7273 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select avg(ifnull(sal,0)) from emp;
++--------------------+
+| avg(ifnull(sal,0)) |
++--------------------+
+|          1968.7500 |
++--------------------+
+
+mysql> select min(sal) from emp;
++----------+
+| min(sal) |
++----------+
+|      800 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select min(ifnull(sal,0)) from emp;
++--------------------+
+| min(ifnull(sal,0)) |
++--------------------+
+|                  0 |
++--------------------+
+
+mysql> select max(sal) from emp;
++----------+
+| max(sal) |
++----------+
+|     5000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select max(ifnull(sal,0)) from emp;
++--------------------+
+| max(ifnull(sal,0)) |
++--------------------+
+|               5000 |
++--------------------+
+
+mysql> select count(sal) from emp;
++------------+
+| count(sal) |
++------------+
+|         11 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(ifnull(sal,0)) from emp;
++----------------------+
+| count(ifnull(sal,0)) |
++----------------------+
+|                   12 |
++----------------------+
+
+mysql> select count(*) from emp;
++----------+
+| count(*) |
++----------+
+|       12 |
++----------+
+mysql> select sum(sal)/count(*) from emp;
++-------------------+
+| sum(sal)/count(*) |
++-------------------+
+|         1968.7500 |
++-------------------+
+mysql> select avg(ifnull(sal,0)) from emp;
++--------------------+
+| avg(ifnull(sal,0)) |
++--------------------+
+|          1968.7500 |
++--------------------+
+mysql> select sum(sal) from emp where deptno=10;
++----------+
+| sum(sal) |
++----------+
+|     7450 |
++----------+
+
+mysql> select ename,count(*) from emp where sal>2000 group by ename;
++-------+----------+
+| ename | count(*) |
++-------+----------+
+| KING  |        1 |
+| BLAKE |        1 |
+| CLARK |        1 |
+| JONES |        1 |
+| FORD  |        1 |
++-------+----------+
+mysql> select variance(sal) from emp;
++-------------------+
+| variance(sal)     |
++-------------------+
+| 1428460.743801653 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select round(variance(sal)) from emp;
++----------------------+
+| round(variance(sal)) |
++----------------------+
+|              1428461 |
++----------------------+
+
+mysql> select stddev(sal) from emp;
++--------------------+
+| stddev(sal)        |
++--------------------+
+| 1195.1823056762732 |
++--------------------+
+mysql> select count(*),min(sal),max(sal),sum(sal),avg(sal) from emp;
++----------+----------+----------+----------+-----------+
+| count(*) | min(sal) | max(sal) | sum(sal) | avg(sal)  |
++----------+----------+----------+----------+-----------+
+|       12 |      800 |     5000 |    23625 | 2147.7273 |
++----------+----------+----------+----------+-----------+
+mysql> select sal ,count( sal) from emp group by ename;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'cdac.emp.SAL' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_bymysql> select ename ,sum(sal) from emp group by ename;
++--------+----------+
+| ename  | sum(sal) |
++--------+----------+
+| KING   |     5000 |
+| BLAKE  |     2850 |
+| CLARK  |     2450 |
+| JONES  |     2975 |
+| MARTIN |     1250 |
+| ALLEN  |     1600 |
+| TURNER |     1500 |
+| JAMES  |      950 |
+| WARD   |     1250 |
+| FORD   |     3000 |
+| SMITH  |      800 |
+| SCOTT  |     NULL |
++--------+----------+
+mysql> select deptno,sum(sal) from emp
+    -> where sal>2000
+    -> group by deptno;
++--------+----------+
+| deptno | sum(sal) |
++--------+----------+
+|     10 |     7450 |
+|     30 |     2850 |
+|     20 |     5975 |
++--------+----------+
+mysql> select job,sum(sal) from emp
+    -> where sal>2000
+    -> group by deptno;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'cdac.emp.JOB' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select deptno,job,sum(sal) from emp
+    -> group by deptno,job;
++--------+-----------+----------+
+| deptno | job       | sum(sal) |
++--------+-----------+----------+
+|     10 | PRESIDENT |     5000 |
+|     30 | MANAGER   |     2850 |
+|     10 | MANAGER   |     2450 |
+|     20 | MANAGER   |     2975 |
+|     30 | SALESMAN  |     5600 |
+|     30 | CLERK     |      950 |
+|     20 | ANALYST   |     3000 |
+|     20 | CLERK     |      800 |
++--------+-----------+----------+
+
+//faster deu to group by deptno
+mysql> select deptno,ename, sum(sal) from emp
+    -> group by deptno,ename;
++--------+--------+----------+
+| deptno | ename  | sum(sal) |
++--------+--------+----------+
+|     10 | KING   |     5000 |
+|     30 | BLAKE  |     2850 |
+|     10 | CLARK  |     2450 |
+|     20 | JONES  |     2975 |
+|     30 | MARTIN |     1250 |
+|     30 | ALLEN  |     1600 |
+|     30 | TURNER |     1500 |
+|     30 | JAMES  |      950 |
+|     30 | WARD   |     1250 |
+|     20 | FORD   |     3000 |
+|     20 | SMITH  |      800 |
+|     20 | SCOTT  |     NULL |
++--------+--------+----------+
+
+//slower due to group by ename
+mysql> select deptno,ename, sum(sal) from emp
+    -> group by ename,deptno;
++--------+--------+----------+
+| deptno | ename  | sum(sal) |
++--------+--------+----------+
+|     10 | KING   |     5000 |
+|     30 | BLAKE  |     2850 |
+|     10 | CLARK  |     2450 |
+|     20 | JONES  |     2975 |
+|     30 | MARTIN |     1250 |
+|     30 | ALLEN  |     1600 |
+|     30 | TURNER |     1500 |
+|     30 | JAMES  |      950 |
+|     30 | WARD   |     1250 |
+|     20 | FORD   |     3000 |
+|     20 | SMITH  |      800 |
+|     20 | SCOTT  |     NULL |
++--------+--------+----------+
+
+mysql> select deptno,job,sum(sal) from emp
+    -> group by deptno,job;
++--------+-----------+----------+
+| deptno | job       | sum(sal) |
++--------+-----------+----------+
+|     10 | PRESIDENT |     5000 |
+|     30 | MANAGER   |     2850 |
+|     10 | MANAGER   |     2450 |
+|     20 | MANAGER   |     2975 |
+|     30 | SALESMAN  |     5600 |
+|     30 | CLERK     |      950 |
+|     20 | ANALYST   |     3000 |
+|     20 | CLERK     |      800 |
++--------+-----------+----------+
+mysql> select deptno,job,sum(sal) from emp
+    -> group by deptno,job
+    -> having sum(sal)>1000;
++--------+-----------+----------+
+| deptno | job       | sum(sal) |
++--------+-----------+----------+
+|     10 | PRESIDENT |     5000 |
+|     30 | MANAGER   |     2850 |
+|     10 | MANAGER   |     2450 |
+|     20 | MANAGER   |     2975 |
+|     30 | SALESMAN  |     5600 |
+|     20 | ANALYST   |     3000 |
++--------+-----------+----------+
+
+mysql> select deptno,job,sum(sal) from emp
+    -> group by deptno,job
+    -> having deptno=10;
++--------+-----------+----------+
+| deptno | job       | sum(sal) |
++--------+-----------+----------+
+|     10 | PRESIDENT |     5000 |
+|     10 | MANAGER   |     2450 |
++--------+-----------+----------+
+
+mysql> select deptno,sum(sal) from emp
+    -> group by deptno
+    -> having deptno=10;
++--------+----------+
+| deptno | sum(sal) |
++--------+----------+
+|     10 |     7450 |
++--------+----------+
+
+//====------>>>>---JOINS---<<<<------====//
+
+CREATE TABLE dept (
+    DEPTNO INT,
+    DNAME VARCHAR(14),
+    LOC VARCHAR(13)
+);
+
+INSERT INTO dept VALUES
+(10, 'ACCOUNTING', 'NEW YORK'),   
+(20, 'RESEARCH', 'DALLAS'),
+(30, 'SALES', 'CHICAGO');
+
+mysql> select * from dept;
++--------+------------+----------+
+| DEPTNO | DNAME      | LOC      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
+|     20 | RESEARCH   | DALLAS   |
+|     30 | SALES      | CHICAGO  |
++--------+------------+----------+
+
+//fast
+mysql> select dname,ename from emp,dept
+    -> where dept.deptno=emp.deptno;
++------------+--------+
+| dname      | ename  |
++------------+--------+
+| ACCOUNTING | KING   |
+| SALES      | BLAKE  |
+| ACCOUNTING | CLARK  |
+| RESEARCH   | JONES  |
+| SALES      | MARTIN |
+| SALES      | ALLEN  |
+| SALES      | TURNER |
+| SALES      | JAMES  |
+| SALES      | WARD   |
+| RESEARCH   | FORD   |
+| RESEARCH   | SMITH  |
+| RESEARCH   | SCOTT  |
++------------+--------+
+
+//slow
+mysql> select dname,ename from dept,emp
+    -> where dept.deptno=emp.deptno;
++------------+--------+
+| dname      | ename  |
++------------+--------+
+| ACCOUNTING | KING   |
+| SALES      | BLAKE  |
+| ACCOUNTING | CLARK  |
+| RESEARCH   | JONES  |
+| SALES      | MARTIN |
+| SALES      | ALLEN  |
+| SALES      | TURNER |
+| SALES      | JAMES  |
+| SALES      | WARD   |
+| RESEARCH   | FORD   |
+| RESEARCH   | SMITH  |
+| RESEARCH   | SCOTT  |
++------------+--------+
+
+mysql> select ename,dname from emp,dept
+    -> where emp.deptno=dept.deptno
+    -> order by 2;
++--------+------------+
+| ename  | dname      |
++--------+------------+
+| KING   | ACCOUNTING |
+| CLARK  | ACCOUNTING |
+| JONES  | RESEARCH   |
+| FORD   | RESEARCH   |
+| SMITH  | RESEARCH   |
+| SCOTT  | RESEARCH   |
+| BLAKE  | SALES      |
+| MARTIN | SALES      |
+| ALLEN  | SALES      |
+| TURNER | SALES      |
+| JAMES  | SALES      |
+| WARD   | SALES      |
++--------+------------+
+
+mysql> select dname,ename,sum(sal) from emp,dept
+    -> where emp.deptno=dept.deptno
+    -> group by dname,ename
+    -> having sum(sal) >2000
+    -> order by dname;
++------------+-------+----------+
+| dname      | ename | sum(sal) |
++------------+-------+----------+
+| ACCOUNTING | CLARK |     2450 |
+| ACCOUNTING | KING  |     5000 |
+| RESEARCH   | FORD  |     3000 |
+| RESEARCH   | JONES |     2975 |
+| SALES      | BLAKE |     2850 |
++------------+-------+----------+
+
+mysql> select dept.dname,emp.ename,emp.sal from emp,dept
+    ->  where sal>2000 and emp.deptno=dept.deptno
+    -> order by 1;
++------------+-------+------+
+| dname      | ename | sal  |
++------------+-------+------+
+| ACCOUNTING | KING  | 5000 |
+| ACCOUNTING | CLARK | 2450 |
+| RESEARCH   | JONES | 2975 |
+| RESEARCH   | FORD  | 3000 |
+| SALES      | BLAKE | 2850 |
++------------+-------+------+
+
+
+
+
+
+
+
+
+
