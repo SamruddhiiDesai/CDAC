@@ -1,0 +1,140 @@
+SQL Exercise 5 
+
+1. Display the Supplier name and the Quantity sold. 
+ mysql> select supplier.sname,spj.qty from supplier,spj
+    -> where supplier.`S#`=spj.`S#`
+    -> ;
++-------+------+
+| sname | qty  |
++-------+------+
+| Emily |  800 |
+| ANA   |  500 |
+| laila | 1000 |
+| BLOKE |  400 |
+| Sedny | 2500 |
++-------+------+
+2. Display the Part name and Quantity sold. 
+mysql> select part.pname,spj.qty from part,spj
+    -> where part.`P#`=spj.`P#`;
++----------+------+
+| pname    | qty  |
++----------+------+
+| Valve    |  800 |
+| Motor    |  500 |
+| software | 1000 |
+| Coil     |  400 |
+| Pipe     | 2500 |
++----------+------+
+ 
+3. Display the Project name and Quantity sold. 
+ mysql> select projects.jname,spj.qty from projects,spj
+    -> where projects.`J#`=spj.`J#`;
++------------+------+
+| jname      | qty  |
++------------+------+
+| Sanproject |  800 |
+| TAPE       |  500 |
+| JANZY      | 1000 |
+| greeny     |  400 |
+| dina       | 2500 |
++------------+------+
+
+4. Display the Supplier name, Part name, Project name and Quantity sold. 
+ mysql> select sname,pname,jname ,qty from supplier,part,projects,spj
+    ->  where supplier.`S#`=spj.`S#`and part.`P#`=spj.`P#`and projects.`J#`=spj.`J#`;
++-------+----------+------------+------+
+| sname | pname    | jname      | qty  |
++-------+----------+------------+------+
+| Emily | Valve    | Sanproject |  800 |
+| ANA   | Motor    | TAPE       |  500 |
+| laila | software | JANZY      | 1000 |
+| BLOKE | Coil     | greeny     |  400 |
+| Sedny | Pipe     | dina       | 2500 |
++-------+----------+------------+------+
+5. Display the Supplier name, Supplying Parts to a Project in the same City. 
+mysql> select sname,pname from supplier,part,projects
+    -> where supplier.city=projects.city and part.city=projects.city;
++-------+----------+
+| sname | pname    |
++-------+----------+
+| Emily | Coil     |
+| BLOKE | Coil     |
+| Emily | Motor    |
+| BLOKE | Motor    |
+| Emily | Coil     |
+| BLOKE | Coil     |
+| Emily | Motor    |
+| BLOKE | Motor    |
+| laila | software |
+| ANA   | Pipe     |
+| Sedny | Pipe     |
+| ANA   | Valve    |
+| Sedny | Valve    |
+| ANA   | Pipe     |
+| Sedny | Pipe     |
+| ANA   | Valve    |
+| Sedny | Valve    |
++-------+----------+
+ 
+6. Display the Part name that is ‘Red’ is color, and the Quantity sold. 
+
+ mysql> select pname from part,spj
+    -> where part.`P#`=spj.`P#` and color='Red';
++-------+
+| pname |
++-------+
+| Valve |
+| Motor |
+| Pipe  |
++-------+
+7. Display all the Quantity sold by Suppliers with the Status = 20. 
+
+ mysql> select qty from supplier,spj
+    -> where supplier.`S#`=spj.`S#` and status=20;
++------+
+| qty  |
++------+
+|  500 |
++------+
+8. Display all the Parts and Quantity with a Weight > 14.
+ 
+ mysql> select pname,qty from part,spj
+    -> where part.`P#`=spj.`P#` and weight>14;
++----------+------+
+| pname    | qty  |
++----------+------+
+| Motor    |  500 |
+| software | 1000 |
+| Coil     |  400 |
+| Pipe     | 2500 |
++----------+------+
+9. Display all the Project names and City, which has bought more than 500 Parts.
+ mysql> select pname,city from part,spj
+    -> where part.`P#`=spj.`P#` and qty>500;
++----------+--------+
+| pname    | city   |
++----------+--------+
+| Valve    | Paris  |
+| software | Athens |
+| Pipe     | Paris  |
++----------+--------+
+ 
+10. Display all the Part names and Quantity sold that have a Weight less than 15.
+ mysql> select pname,qty from part,spj
+    -> where part.`P#`=spj.`P#` and weight<15;
++-------+------+
+| pname | qty  |
++-------+------+
+| Valve |  800 |
++-------+------+
+ 
+11. Display all the Employee names and the name of their Managers.
+mysql> select a.empname,b.empname from semp a,semp b
+    -> where a.depthead=b.depthead;
++---------+---------+
+| empname | empname |
++---------+---------+
+| ALI     | ALI     |
+| GEORGE  | GEORGE  |
++---------+---------+
+ 

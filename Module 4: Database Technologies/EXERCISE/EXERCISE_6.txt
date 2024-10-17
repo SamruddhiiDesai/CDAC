@@ -1,0 +1,207 @@
+SQL EXERCISE 6 
+
+
+1. Display all the Suppliers with the same Status as the supplier, ‘CLARK’. 
+ 
+mysql> select sname from supplier where status=(select status from supplier
+    -> where sname='ANA');
++-------+
+| sname |
++-------+
+| ANA   |
++-------+
+2. Display all the Employees in the same department as the employee ‘MILLER’.
+ mysql> select empname from semp where deptno=(select deptno from semp where
+    -> empname='SUNIL');
++---------+
+| empname |
++---------+
+| SUNIL   |
+| ALI     |
++---------+
+ 
+3. Display all the Parts which have more Weight than all the Red parts. 
+mysql> select pname from part where weight >(select max(weight) from part where color='Red');
+Empty set (0.00 sec)
+
+mysql> select max(weight) from part where color='Red';
++-------------+
+| max(weight) |
++-------------+
+|          22 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from part;
++------+----------+-------+--------+--------+
+| P#   | Pname    | Color | Weight | City   |
++------+----------+-------+--------+--------+
+| P1   | Valve    | Red   |     10 | Paris  |
+| P2   | Motor    | Red   |     22 | London |
+| P3   | software | Green |     15 | Athens |
+| P4   | Coil     | Green |     20 | London |
+| P5   | Pipe     | Red   |     18 | Paris  |
++------+----------+-------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select pname from part where weight >(select max(weight) from part where color='Green');
++-------+
+| pname |
++-------+
+| Motor |
++-------+
+ 
+4. Display all the Projects going on in the same city as the project ‘TAPE’. 
+mysql> select jname from projects where city=(select city from projects where jname='TAPE');
++------------+
+| jname      |
++------------+
+| Sanproject |
+| TAPE       |
++------------+
+ 
+5. Display all the Parts with Weight less than all the Green parts. 
+ 
+mysql> select pname from part where weight=(select max(weight) from part whe
+re color='Green');
++-------+
+| pname |
++-------+
+| Coil  |
++-------+
+6. Display the name of the Supplier who has sold the maximum Quantity (in one 
+sale). 
+ mysql> select sname from supplier where `S#`=(select `S#` from spj where qty=(select max(qty) from spj));
++-------+
+| sname |
++-------+
+| Sedny |
++-------+
+
+7. Display the name of the Employee with the minimum Salary. 
+
+ 
+mysql> select empname from semp where basic=(select max(basic) from semp);
++---------+
+| empname |
++---------+
+| HIREN   |
++---------+
+8. Display the name of the Supplier who has sold the maximum overall Quantity (sum 
+of Sales). 
+mysql> INSERT INTO spj (`S#`, `P#`, `J#`, Qty)
+    -> VALUES
+    ->  ('S5', 'P5', 'J5', 2500);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM SPJ;
++------+------+------+------+
+| S#   | P#   | J#   | Qty  |
++------+------+------+------+
+| S1   | P1   | J1   |  800 |
+| S2   | P2   | J2   |  500 |
+| S3   | P3   | J3   | 1000 |
+| S4   | P4   | J4   |  400 |
+| S5   | P5   | J5   | 2500 |
+| S5   | P5   | J5   | 2500 |
++------+------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> select sname from supplier where `S#`=(select `S#` from spj where qty=(select max(sum(qty)) from spj));
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select sname from supplier where `S#`=(select `S#` from spj group by qty having qty=(select sum(qty) wher
+e spj));
+ERROR 1054 (42S22): Unknown column 'spj' in 'where clause'
+mysql> select sname from supplier where `#S` =(select `S#` from spj group by `S#` having sum(qty)=^C
+mysql> select sum(qty) from spj group by `S#`;
++----------+
+| sum(qty) |
++----------+
+|      800 |
+|      500 |
+|     1000 |
+|      400 |
+|     5000 |
++----------+
+5 rows in set (0.00 sec)
+
+mysql> select max(allsum) from(select sum(qty) from spj group by `S#`)as allsumm;
+ERROR 1054 (42S22): Unknown column 'allsum' in 'field list'
+mysql>  select max(allsum) from(select sum(qty) as allsum from spj group by `S#`);
+ERROR 1248 (42000): Every derived table must have its own alias
+mysql> select max(all_sum) from(select sum(qty) as all_sum from spj group by `S#`)as subq;
++--------------+
+| max(all_sum) |
++--------------+
+|         5000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select `S#` from spj where (select max(all_sum) from(select sum(qty) as all_sum from spj group by `S#`)as subq);
++------+
+| S#   |
++------+
+| S1   |
+| S2   |
+| S3   |
+| S4   |
+| S5   |
+| S5   |
++------+
+6 rows in set (0.00 sec)
+
+mysql> select `S#` from spj group by `S#` having sum(qty)=(select max(all_sum) from(select sum(qty) as all_sum from spj group by `S#`)as subq);
++------+
+| S#   |
++------+
+| S5   |
++------+
+1 row in set (0.01 sec)
+
+mysql> select sname from supplier where `S#` =( select `S#` from spj group by `S#` having sum(qty)=(select max(all_sum) from(select sum(qty) as all_sum from spj group by `S#`)as subq));
++-------+
+| sname |
++-------+
+| Sedny |
++-------+
+1 row in set (0.01 sec)
+
+mysql> select * from supplier;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Emily | 10     | London |
+| S2   | ANA   | 20     | Paris  |
+| S3   | laila | 30     | Athens |
+| S4   | BLOKE | 15     | London |
+| S5   | Sedny | 50     | Paris  |
++------+-------+--------+--------+
+5 rows in set (0.00 sec)
+ 
+9. Display the name of the Department with the maximum number of Employees.
+
+mysql> select deptname from sdept where deptno=(select deptno from semp group by deptno having count(empno)=(select max(cout) from (select count(empno) as c
+out from semp group by deptno) as exam));
++----------+
+| deptname |
++----------+
+| Training |
++----------+
+mysql> select * from sdept;
++--------+-------------+
+| DEPTNO | DEPTNAME    |
++--------+-------------+
+| 10     | Development |
+| 20     | Training    |
++--------+-------------+
+
+mysql> select * from semp;
++-------+---------+-------+--------+----------+
+| EMPNO | EMPNAME | BASIC | DEPTNO | DEPTHEAD |
++-------+---------+-------+--------+----------+
+| 0001  | SUNIL   |  6000 | 10     | NULL     |
+| 0002  | HIREN   |  8000 | 20     | NULL     |
+| 0003  | ALI     |  4000 | 10     | 0001     |
+| 0004  | GEORGE  |  6000 | 20     | 0002     |
+| 5     | ANA     |  5000 | 20     | 3        |
++-------+---------+-------+--------+----------+

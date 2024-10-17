@@ -1,0 +1,112 @@
+SQL Exercise 3 
+
+1. Display all the Supplier names with the initial letter capital.
+ mysql> select sname from supplier where ascii(substr(sname,1,1)) between 65 and 90;
++-------+
+| sname |
++-------+
+| Emily |
+| ANA   |
+| SLOKE |
+| Sedny |
++-------+
+ 
+2. Display all the Supplier names in upper case. 
+ select sname from supplier where ascii(substr(sname,2)) between 65 and 90;
++-------+
+| sname |
++-------+
+| ANA   |
+| SLOKE |
++-------+
+3. Display all the Supplier names in lower case. 
+ select sname from supplier where ascii(substr(sname,1,1)) between 97 and 122;
++-------+
+| sname |
++-------+
+| laila |
++-------+
+4. Display all the Supplier names padded to 25 characters, with spaces on the left. 
+ select lpad(sname,25,' ') from supplier;
++---------------------------+
+| lpad(sname,25,' ')        |
++---------------------------+
+|                     Emily |
+|                       ANA |
+|                     laila |
+|                     SLOKE |
+|                     Sedny |
++---------------------------+
+5. Display all the Supplier names (with ‘la’ replaced by ‘ro’). 
+ HINT: REPLACE. 
+ select replace(sname,'la','ro') from supplier ;
++--------------------------+
+| replace(sname,'la','ro') |
++--------------------------+
+| Emily                    |
+| ANA                      |
+| roiro                    |
+| SLOKE                    |
+| Sedny                    |
++--------------------------+
+6. Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is replaced
+with ‘o’. 
+select replace(replace(sname,'l','r'),'a','o')from supplier;
++-----------------------------------------+
+| replace(replace(sname,'l','r'),'a','o') |
++-----------------------------------------+
+| Emiry                                   |
+| ANA                                     |
+| roiro                                   |
+| SLOKE                                   |
+| Sedny                                   |
++-----------------------------------------+
+ 
+7. Display the Supplier names and the lengths of the names. 
+select sname ,length(sname) from supplier;
++-------+---------------+
+| sname | length(sname) |
++-------+---------------+
+| Emily |             5 |
+| ANA   |             3 |
+| laila |             5 |
+| SLOKE |             5 |
+| Sedny |             5 |
++-------+---------------+
+ 
+8. Use the soundex function to search for a supplier by the name of ‘BLOKE’.
+  select sname from supplier where soundex(sname)=soundex('BLOKE');
++-------+
+| sname |
++-------+
+| BLOKE |
++-------+
+ 
+9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.). 
+mysql> select sname,status,
+    -> case
+    -> when status = 10 then'Ten'
+    -> when status = 15 then 'Fifteen'
+    -> when status = 20 then 'Tweenty'
+    -> when status = 30 then 'Thirty'
+    -> when status = 50 then 'Fifty'
+    -> else 'other'
+    -> end as CharcNum
+    -> from supplier;
++-------+--------+----------+
+| sname | status | CharcNum |
++-------+--------+----------+
+| Emily | 10     | Ten      |
+| ANA   | 20     | Tweenty  |
+| laila | 30     | Thirty   |
+| BLOKE | 15     | Fifteen  |
+| Sedny | 50     | Fifty    |
++-------+--------+----------+
+ 
+10. Display the current day (e.g. Thursday).
+select dayname(sysdate());
++--------------------+
+| dayname(sysdate()) |
++--------------------+
+| Sunday             |
++--------------------+

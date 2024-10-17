@@ -1,0 +1,137 @@
+SQL Exercise 4 
+1. Display the minimum Status in the Supplier table.
+select min(status) from supplier;
++-------------+
+| min(status) |
++-------------+
+| 10          |
++-------------+ 
+ 
+2. Display the maximum Weight in the Parts table.
+select max(weight) from part;
++-------------+
+| max(weight) |
++-------------+
+|          22 |
++-------------+ 
+ 
+3. Display the average Weight of the Parts. 
+ select avg(weight) from part;
++-------------+
+| avg(weight) |
++-------------+
+|     17.0000 |
++-------------+
+ 
+4. Display the total Quantity sold for part ‘P1’.
+ mysql> select `P#`,sum(qty) from spj where `P#`='P1';
++------+----------+
+| P#   | sum(qty) |
++------+----------+
+| P1   |      800 |
++------+----------+
+ 
+5. Display the total Quantity sold for each part. 
+mysql> select sum(qty) from spj group by `P#`;
++----------+
+| sum(qty) |
++----------+
+|      800 |
+|      500 |
+|     1000 |
+|      400 |
+|     2500 |
++----------+
+ 
+6. Display the average Quantity sold for each part. 
+mysql> select `P#` ,avg(qty) from spj group by `P#`;
++------+-----------+
+| P#   | avg(qty)  |
++------+-----------+
+| P1   |  800.0000 |
+| P2   |  500.0000 |
+| P3   | 1000.0000 |
+| P4   |  400.0000 |
+| P5   | 2500.0000 |
++------+-----------+
+ 
+7. Display the maximum Quantity sold for each part, provided the maximum Quantity 
+is greater than 800. 
+mysql> select `P#` ,max(qty) from spj group by `P#` having max(qty)>800;
++------+----------+
+| P#   | max(qty) |
++------+----------+
+| P3   |     1000 |
+| P5   |     2500 |
++------+----------+
+ 
+8. Display the Status and the count of Suppliers with that Status. 
+
+mysql> select status,count(status) from supplier group by status;
++--------+---------------+
+| status | count(status) |
++--------+---------------+
+| 10     |             1 |
+| 20     |             1 |
+| 30     |             1 |
+| 15     |             1 |
+| 50     |             1 |
++--------+---------------+
+ 
+9. Display the count of Projects going on in different cities.
+ mysql> select city,count(`J#`) from projects group by city;
++--------+-------------+
+| city   | count(`J#`) |
++--------+-------------+
+| London |           2 |
+| Athens |           1 |
+| Paris  |           2 |
++--------+-------------+
+ 
+10. What is the difference between COUNT(Status) and COUNT(*) ? 
+count(status) gives number of status
+count(*) gives no.of rows
+mysql> select count(status) from supplier;
++---------------+
+| count(status) |
++---------------+
+|             5 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from supplier;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.01 sec)
+ 
+11. Display the Status and the Count of Suppliers with that Status in the following format 
+as shown below:- 
+ 
+Status Count 
+Ten 1 
+Twenty 2 
+Thirty 3
+
+
+mysql> select status,
+    -> case
+    -> when status = 10 then'Ten'
+    -> when status = 15 then 'Fifteen'
+    -> when status = 20 then 'Tweenty'
+    -> when status = 30 then 'Thirty'
+    -> when status = 50 then 'Fifty'
+    -> else 'other'
+    -> end as CharcNum
+    -> from supplier;
++--------+----------+
+| status | CharcNum |
++--------+----------+
+| 10     | Ten      |
+| 20     | Tweenty  |
+| 30     | Thirty   |
+| 15     | Fifteen  |
+| 50     | Fifty    |
++--------+----------+
