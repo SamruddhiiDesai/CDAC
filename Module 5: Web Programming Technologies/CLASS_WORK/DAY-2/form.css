@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(form.png)no-repeat;
+    background-position: center;
+    background-size: cover; 
+
+}
+.container{
+    width: 600px;
+    height: 700px;
+    background: rgba(0, 0, 0, 0.5);
+     backdrop-filter:blur(10px); 
+      border-radius: 40px; 
+     display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column; 
+    border: solid 1px black;
+
+}
+ h2{
+    color: rgb(255, 254, 254);
+    text-transform: uppercase;
+    padding: 20px 0;
+    font-size: 2em;
+} 
+
+ .formm{
+    position: relative;
+    /* background-color: brown;  */
+    width: 500px;
+    margin:15px 0 ;
+    text-align: left;
+    margin-left: 25px;
+    /* border-bottom: 3px solid white; */
+    
+} 
+  .formm input{
+    width: 500px;
+    height: 30px;
+    border-radius: 10px;
+
+     /* background: transparent;  */
+    /* border: none; */
+    /* outline: none; */
+    /* font-size: 1.2em; */
+    color: rgb(176, 176, 176); 
+    /* padding: 0 30px 0 10px; */
+ } 
+/* .formm input{
+    width: 500px;
+    height: 30px;
+    border-radius: 4px;
+     background: transparent;  
+     border: none; 
+ outline: none; 
+    font-size: 1.2em;
+    color: azure; 
+    padding: 0 30px 0 10px; 
+    text-decoration: underline;
+}  */
+/* .formm label{
+    position: absolute;
+    top:50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: aliceblue;
+}   */
+/* input:focus ~ label,
+input:valid~label
+{
+    top:-5px;
+} */
+/* p{
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+}
+p>a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}*/
+p>a:hover{
+    text-decoration: underline;
+    font-style: italic;
+} 
+ #btn{
+    width: 100px;
+    height: 30px;
+    border-radius: 40px;
+    border: none;
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+} 
+#btn:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+} 
