@@ -1,0 +1,43 @@
+JavaScript: is to execute logics at the client side/ web browser 
+
+With HTML & CSS, page will be static one 
+
+Applications: form validations, animations, req & res from a server 
+
+To write js code we need script tag
+
+<script>
+	
+</script>
+
+Note: we should always place script tag at the end of the body
+
+For JS everything is an object 
+For eg: any value (numeric, string, Boolean, array, object of any class), html tags, browser tab/window 
+
+
+document is a predefined object in JS that represents the complete web page
+Now if we want to perform any operation on the web page then document object will be used
+
+obj.method()
+document.write("Hello JS");
+
+console: console is an area in the dev tools, that will log few debugging messages , JS errors 
+To perform any operation on the browser console we have console object in js 
+
+console.log("hello message on console");
+alert("This is a test");
+
+window
+
+
+
+
+
+
+
+
+
+
+
+

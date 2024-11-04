@@ -1,0 +1,194 @@
+document.write
+console.log
+alert
+
+variables:
+
+in js variables/data types are dynamic i.e. the data type will be assigned at runtime 
+type for any variable is not fixed while development
+
+a=5;
+b=8.5;
+
+for numeric values either it is decimal or integer the type will be always number
+
+str = "hello";
+'hello' "hello"
+
+ch = 'd'; 
+
+in js there is not separate type for characters 
+we can enclose string either in '' or ""
+
+c = true; true | false
+typeof c
+data = null;
+
+
+
+ a = 3;
+      b = 8;
+      c = a+b;
+      console.log("Sum of "+a+" and "+b+" is "+c);
+      console.log(`Sum of ${a} and ${b} is ${c}`);
+
+
+operators:
+arithmetic: + - * / % **(power)
+relational: < > <= >= == != ===
+logical: && || !
+conditional: z = condition? x:y;
+bitwise: 
+assignment: = += -= *= /= %=
+increment: ++ pre/post
+decrement: -- pre/post
+
+
+"4"+2 : concat
+apart from + operator 
+* / % - == "4"-3 "4" will be converted into number by js engine 
+
+console.log("4"+1-6*2);
+
+a=5
+a=a+2 a+=2
+
+control structures:
+1. sequential
+2. conditional: if else, if else if, nested if, switch case 
+3. iterations: for, while, do-while, for-each
+
+
+a = -5;
+      if(a>0){
+         console.log("Positive");
+      }
+      else{
+         console.log("Negative");
+      }
+
+roll 
+101 -> Rohan
+102 -> Mohan
+103 -> Sohan
+not found
+
+
+a=5
+b=13
+
+500 different values
+
+array: array is a collection of elements (homo or hetro)
+
+each element of array will get an index no. that will start from 0 
+storage is contigeous 
+
+arr = [10,20,30,40,50,"Hello","Hiii",5.6,true]
+
+
+
+arr = [10,20,30,40,50,"Hello","Hiii",5.6,true];
+     console.log(arr);
+     console.log(arr.length);
+   //   console.log(arr[2]);
+     for(i=0;i<arr.length;i++){
+      console.log(arr[i])
+     }
+
+for(i=arr.length-1; i>=0; i--){
+      console.log(arr[i]);
+     }
+
+
+for(i=0;i<arr.length;i++){
+      if(arr[i]%2==0){
+         console.log(arr[i]);
+      }
+     
+     }
+
+arr = [2,10,7,3,54,15,54,8,6,5];
+     
+     max = arr[0];
+
+     for(i=1;i<arr.length;i++){
+      if(max<arr[i]){
+         max = arr[i];
+      }
+     }
+
+     console.log(max);
+
+2d array: collection of 1d arrays
+
+a= [[10,20,30],[40,50],[60,70,80,90]]
+
+
+a= [[10,20,30],[40,50],[60,70,80,90]]
+     
+     for(i=0;i<a.length;i++){
+      for(j=0;j<a[i].length;j++){
+         console.log(a[i][j])
+      }
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

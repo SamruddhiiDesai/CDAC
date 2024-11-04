@@ -1,0 +1,20 @@
+display property in css
+display: none | block | inline | inline-block
+
+none: element will be removed
+block: element will be started from new line
+inline & inline-block: elements will be displayed in the same line
+
+display: inline (then width & height property will have no effect)
+if we want to persist the custom width and height so we have to use display: inline-block
+
+
+box-model
+height : 400px 
+border : 2px
+padding-top: 20px bottom: 20px
+ 400 + 2 + 2 + 20 + 20
+
+box model is a pictorial representation of any element, which depicts the amount of margins, paddings, borders and width & height occupied by any element 
+
+The total width : original width + padding + border + margin 
