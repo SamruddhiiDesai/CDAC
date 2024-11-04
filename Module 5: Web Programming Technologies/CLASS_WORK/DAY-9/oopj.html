@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Employee{
+
+            //parameterless
+            // constructor(){
+
+            //     console.log("Employee constructor");
+            //     this.id=101;
+            //     this.name="Samruddhi";
+
+            // }
+          
+            //parameterized
+//             constructor(id,name){
+ 
+//                 this.id=id;
+//                  this.name=name;
+
+// }
+
+            
+//         }
+
+constructor(id,name){
+ 
+ this.id=id;
+  this.name=name;
+
+}
+show(){
+    console.log(this.id,this.name);
+}
+
+}
+var emp1=new Employee(1,"sam");
+emp1.show();
+         //parameterless
+        // var emp1=new Employee();
+        // console.log(emp1);
+        // console.log(emp1.id,emp1.name);
+
+        // var emp2=new Employee();
+        // console.log(emp2.id,emp2.name);
+
+          //parameterized
+        // var emp1=new Employee(1,"sam");
+        // console.log(emp1);
+        // console.log(emp1.id,emp1.name);
+
+        // var emp2=new Employee(2,"samu");
+        // console.log(emp2.id,emp2.name);
+
+
+    </script>
+</body>
+</html>
