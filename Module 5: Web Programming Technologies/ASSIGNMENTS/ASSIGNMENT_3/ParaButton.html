@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    p{
+        font-size: 16px;
+        font-family: sans-serif;
+        color: rgb(0, 0, 0);
+        background: white;
+    }
+    #para{
+        margin: 0;
+        padding: 0;
+        height: 300px;
+        width: 600px;
+        border: 1px solid black;
+        margin-left: 400px;
+        margin-top: 80px;
+    }
+    #bt{
+        margin-top: 20px;
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+        color: rgb(0, 0, 0);
+        background: rgb(220, 215, 215);
+        margin-left: 650px;
+    }
+    </style>
+</head>
+<body>
+    <p id="para">Discipline is the backbone of a fulfilling life, helping us achieve goals, make healthier choices, and manage time effectively.
+         It builds self-control and consistency, which are crucial for making positive decisions, whether in personal growth, health, or finances. 
+         Through disciplined routines, we enhance productivity, improve relationships by being reliable, and foster mental and physical well-being by following healthy habits. 
+         This foundation of discipline not only drives us toward success but also cultivates adaptability, self-confidence, and stability, allowing us to thrive and find balance in all aspects of life.</p>
+         <button id="bt">Click Me</button>
+         <script>
+            const para=document.getElementById("para");
+            const button=document.getElementById("bt");
+
+            button.addEventListener("click",function(){
+                para.style.fontSize="20px";
+                para.style.color="black";
+                para.style.background="pink"
+                para.style.fontFamily="cursive"
+                bt.style.color="white"
+                bt.style.background="black"
+            });
+         </script>
+</body>
+</html>

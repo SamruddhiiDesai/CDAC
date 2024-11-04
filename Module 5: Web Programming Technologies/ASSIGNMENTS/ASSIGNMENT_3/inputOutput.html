@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      
+        
+        input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: block;
+        }
+        #bt{
+        margin-top: 20px;
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+        color: rgb(0, 0, 0);
+        background: rgb(220, 215, 215);
+        
+    }
+    </style>
+</head>
+<body>
+    <form id="form" onsubmit="display(event)">
+        <label>Enter FirstName:</label>
+        <input type="text" id="ui1" placeholder="Enter Name">
+        <label>Enter LastName:</label>
+        <input type="text" id="ui2" placeholder="Enter LastName">
+        <label>Enter PhoneNo:</label>
+        <input type="text" id="ui3" placeholder="Enter PhoneNumber">
+        <label>Enter EmailID:</label>
+        <input type="text" id="ui4" placeholder="email@gmail.com">
+        <button id="bt"  type="submit">Submit</button>
+    </form>
+    <p id="op"></p>
+
+    <script>
+        function display(event) {
+            event.preventDefault(); 
+            
+            const firstName = document.getElementById("ui1").value;
+            const lastName = document.getElementById("ui2").value;
+            const phoneNo = document.getElementById("ui3").value;
+            const email = document.getElementById("ui4").value;
+            
+            const outputDisplay = document.getElementById("op");
+            outputDisplay.innerHTML = "Output:<br>" +
+           "First Name: " + firstName + "<br>" + "Last Name: " + lastName + "<br>" +
+           "Phone No: " + phoneNo + "<br>" +"Email ID: " + email;
+            document.getElementById("firstName").value = '';
+            document.getElementById("lastName").value = '';
+            document.getElementById("phoneNo").value = '';
+            document.getElementById("email").value = '';
+        }
+    </script>
+</body>
+</html>
