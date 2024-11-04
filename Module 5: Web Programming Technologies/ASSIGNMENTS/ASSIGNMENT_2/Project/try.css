@@ -1,0 +1,357 @@
+html{
+    scroll-behavior: smooth;
+  }
+  body{
+    position: sticky;
+    left: 0;
+    right: 0;
+  }
+  .navbar .icon {
+    display: none;
+  }
+  
+  .btn{
+    height:50px;
+    width:150px;
+    font-size: 30px;
+    font-weight: bold;
+    color: green;
+    border: 2px solid green;
+    margin-left: 200px;
+  }
+  .fa {
+      padding: 10px;
+      font-size: 100px;
+      width: 50px;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+      border-radius: 50%;
+    }
+    
+    .fa:hover {
+        opacity: 0.7;
+    }
+    
+    .fa-facebook {
+      background: white;
+      color: green;
+      border:1px solid black;
+      margin-top: -20px;
+      margin-left: 50px;
+    }
+    
+    .fa-twitter {
+      background: white;
+      color: green;
+      border:1px solid black;
+      margin-top: -20px;
+      margin-left: 20px;
+    }
+    .fa-linkedin {
+      background: white;
+      color: green;
+      border:1px solid black;
+      margin-top: -20px;
+      margin-left: 20px;
+    }
+    .fa-instagram {
+      background: white;
+      color: green;
+      border:1px solid black;
+      margin-top: -20px;
+      margin-left: 20px;
+    }
+    
+    
+    .img-responsive{
+      float: right;
+      height: 300px;
+      width: 700px;
+    
+      margin-right: -10px;
+  }
+  .para{
+      margin-top: -10px;
+      margin-left: 15px;
+  }
+  .par{
+    font-size: 17px;
+  
+  }
+  .para1{
+    margin-left: 50px;
+    font-size: 17px;
+  }
+  .row{
+    margin-top: 20px;
+  }
+  
+  
+  
+  
+  .right_login{
+    width: 50%;
+    float: right;
+   /* background-color: rgb(151, 151, 232); */
+   height: 495px;
+   align-items: center;
+   justify-items: center;
+   /* margin-top: 100px; */
+   
+   
+  }
+  .loginPage{
+    border: 1 solid black;
+    background: black;
+    color: wheat;
+    width: 600px;
+    height: 400px;
+  margin-left: 80px;
+  margin-top: 40px;
+   
+  }
+  .left{
+    float: left;
+    width: 50%;
+  }
+  
+  
+  
+  #login-form
+  {
+    display: none;
+  }
+  .form-box
+  {
+    width:449px;
+   /* margin: 10px 200px; */
+  height:498px;
+  position:relative;
+  background:rgb(151, 151, 232);
+  padding:10px;
+    overflow: hidden;
+    /* border-radius: 10px; */
+    margin-left: -15px;
+  }
+  .button-box
+  {
+  width:310px;
+    background-color: #00aae6;
+  position:relative;
+  box-shadow: 0 0 20px 9px #ff61241f;
+  border-radius: 30px;
+    margin-left: 50px;
+    margin-top: 30px;
+  }
+  .toggle-btn
+  {
+  padding:10px 30px;
+  cursor:pointer;
+  background:transparent;
+  border:0;
+  outline: none;
+  position: relative;
+  }
+  #btn
+  {
+  top: 0;
+  left:0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: #F3C693;
+  border-radius: 30px;
+  transition: .5s;
+  }
+  .input-group-login
+  {
+  top: 150px;
+  position:absolute;
+  width:280px;
+  transition:.5s;
+  }
+  .input-group-register
+  {
+    top: 120px;
+  position:absolute;
+  width:280px;
+  transition:.5s;
+  }
+  .input-field
+  {
+  width: 100%;
+  padding:10px 0;
+  margin:5px 0;
+  border-left:0;
+  border-top:0;
+  border-right:0;
+  border-bottom: 1px solid black;
+  outline:none;
+  background: transparent;
+  }
+  .submit-btn
+  {
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  /* margin: auto; */
+  margin-top: 25px;
+  background: #f2a956;
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  margin-left: 50px;
+  }
+  .check-box
+  {
+  margin: 30px 10px 34px 0;
+  }
+  .za
+  {
+  color:#480000;
+  font-size:12px;
+  bottom:68px;
+  position:absolute;
+  }
+  #login
+  {
+  left:50px;
+  }
+  #login input
+  {
+  color: white;
+  font-size:15;
+  }
+  #register
+  {
+  left:450px;
+  }
+  
+  #register input
+  {
+  color:white;
+  font-size: 15;
+  }
+  #hod
+  {
+  left:450px;
+  }
+  #hod input
+  {
+    color:white;
+  font-size:15;
+  }
+  #login input
+  {
+  color:white;
+  font-size:15;
+  }
+  .input-group-hod
+  {
+  top: 150px;
+  position:absolute;
+  width:280px;
+  transition:.5s;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    .navbar a:not(:first-child), .dropdown .dropbtn {
+      display: none;
+    }
+    .navbar a.icon {
+      float: right;
+      display: block;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .navbar.responsive {position: relative;}
+    .navbar.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .navbar.responsive a {
+      text-decoration: none;
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    .navbar.responsive .dropdown {float: none;}
+    .navbar.responsive .dropdown-content {position: relative;}
+    .navbar.responsive .dropdown .dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+  
+  .navbar {
+    overflow: hidden;
+    background-color: #f0eded;
+  
+  }
+  
+  .navbar a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    outline: none;
+  }
+  #myTopnav a:hover{
+    text-decoration: none;
+  }
+  /* .active {
+    background-color: #04AA6D;
+    color: white;
+  } */
+  .active, .act:hover {
+   
+    background-color: #04AA6D;
+  }
+  /* .navbar a:hover, .navbar a.active {
+    
+  } */
+  /* .navbar.active {
+    display: block;
+  } */
+  
+  .navbar .icon {
+    display: none;
+  }
+  
+  
+  
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    text-decoration: none;
+    color: green;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    #about {
+      height: 700px;
+    }
+    #login_page{
+      width: 200px;
+    }
+    .left{
+      display: none;
+      
+      width: 0%;
+    }
+    
+    .right_login{
+      float: left;
+    }
+    
+  }
+  
+  
+  
