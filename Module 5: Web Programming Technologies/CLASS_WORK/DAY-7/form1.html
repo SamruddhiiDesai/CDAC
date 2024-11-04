@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="https://www.google.com" onsubmit="return validate()">
+        <input type="text"id="name" onkeyup="valName()">
+        <span id="nameError"class="error"></span>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        function validate(){
+            var name=document.getElementById("name").value;
+            if(name.length===0 && !isNaN(name)){
+                document.getElementById("nameError").innerHTML="Name Required";
+                return false;
+            }else if (!isNaN(name)) {
+                document.getElementById("nameError").innerHTML = "Name cannot be a number";
+                return false;
+            }
+            return true;
+        }
+
+        function valName(){
+            var name=document.getElementById("name").value;
+            if(name.length===0){
+                document.getElementById("nameError").innerHTML="Name Required"; 
+            }
+            else{
+                document.getElementById("nameError").innerHTML=" "; 
+            }
+        }
+    </script>
+</body>
+</html>

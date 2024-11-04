@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      *{
+         font-family: 'Segoe Ui Light';
+      }
+      .error{
+         color: red;
+      }
+   </style>
+</head>
+
+<body>
+
+   <form action="https://www.google.com" onsubmit="return validate()">
+
+      <input type="text" placeholder="Enter name" id="name" onkeyup="validateField('name','nameError','Name is required')">
+      <span id="nameError" class="error"></span>
+
+      <br><br>
+      <input type="text" placeholder="Enter email" id="email" onkeyup="validateField('email','emailError','Email is required')">
+      <span id="emailError" class="error"></span>
+      <br><br>
+
+      <input type="password" placeholder="Enter password" id="password">
+      <span id="passwordError" class="error"></span>
+      <br><br>
+      <input type="text" placeholder="Confirm password" id="confirm-password">
+      <br><br>
+      <select id="qualification">
+         <option value="">---Select qualification---</option>
+         <option value="btech">BTech</option>
+         <option value="mtech">MTech</option>
+         <option value="bsc">BSC</option>
+      </select>
+      <br><br>
+      <input type="radio" name="gender" id="maleRb" checked> <label>Male</label>
+      <input type="radio" name="gender" id="femaleRb"> <label>Female</label>
+      <br><br>
+      <input type="checkbox" id="termsCb" onchange=""> <label>I accept terms and conditions</label>
+      <span id="termsError" class="error"></span>
+      <br><br>
+      <button type="submit">Register</button>
+   </form>
+   <script>
+      function validate(){
+         var name = document.getElementById("name").value;
+         var email = document.getElementById("email").value;
+         var password = document.getElementById("password").value;
+         var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/
+         var termsCb = document.getElementById("termsCb");
+         var isValid = true;
+
+         if(name.length === 0){
+            document.getElementById("nameError").innerHTML = "Name is required";
+            isValid=false;
+         }
+         else{
+            document.getElementById("nameError").innerHTML = "";
+         }
+         if(email.length === 0){
+            document.getElementById("emailError").innerHTML = "Email is required";
+            isValid = false;
+         }
+         else{
+            document.getElementById("emailError").innerHTML = "";
+         }
+         if(password.length === 0){
+            document.getElementById("passwordError").innerHTML = "Password is required";
+            isValid = false;
+         }
+         else if(!passwordRegex.test(password)){
+            document.getElementById("passwordError").innerHTML = "Password must be at least 4 characters, no more than 8 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.";
+            isValid = false;
+         }
+         else{
+            document.getElementById("passwordError").innerHTML = ""
+         }
+
+         if(!termsCb.checked){
+            document.getElementById("termsError").innerHTML = "Please accept terms and conditions";
+            isValid = false;
+         }
+         else{
+            document.getElementById("termsError").innerHTML = "";
+         }
+
+         return isValid;
+      }
+      
+      function validateField(fieldId, errorElementId, validationMessage){
+         var value = document.getElementById(fieldId).value;
+         if(value.length === 0){
+            document.getElementById(errorElementId).innerHTML = validationMessage;
+         }
+         else{
+            document.getElementById(errorElementId).innerHTML = ""
+         }
+      }
+   </script>
+</body>
+
+</html>

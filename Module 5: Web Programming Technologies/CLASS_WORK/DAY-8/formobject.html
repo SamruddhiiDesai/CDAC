@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>age</th>
+                <th>gender</th>
+                <th>phone</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <br><br>
+    <button id="btn">ADDdata</button>
+    <script>
+ 
+         const data=[{ID:1,Name:"SUMANT",age:20,gender:"female",phone:9878987456},
+         {ID:2,Name:"SAMRUDDHI",age:22,gender:"female",phone:9878987456},
+         {ID:3,Name:"VIRAJAS",age:20,gender:"male",phone:9848987456}
+         ];
+
+         const btn=document.getElementById("btn");
+         const tableBody=document.getElementById("tbody");
+   
+         btn.onclick=()=>{
+            data.forEach(ele=>{
+                const {ID,Name,age,gender,phone}=ele;
+                const row=document.createElement("tr");
+                tableBody.append(row);
+
+                const IDBlock=document.createElement("td");
+                IDBlock.innerText=ID;
+                const NameBlock=document.createElement("td");
+                NameBlock.innerText=Name;
+                const ageBlock=document.createElement("td");
+                ageBlock.innerText=age;
+                const genderBlock=document.createElement("td");
+                genderBlock.innerText=gender;
+                const phoneBlock=document.createElement("td");
+                phoneBlock.innerText=phone;
+
+                row.appendChild(IDBlock);
+                row.appendChild(NameBlock);
+                row.appendChild(ageBlock);
+                row.appendChild(genderBlock);
+                row.appendChild(phoneBlock);
+
+
+            });
+         }
+
+
+    </script>
+</body>
+</html>

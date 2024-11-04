@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        s1={roll:111,name:"SUMANT",marks:100,phone:"1234567890"}
+        s2={roll:111,name:"SUMANT",marks:100,phone:["1234567890","11111111111"]}
+        console.log(s2.phone.length);
+        console.log(s1.roll);
+        s3={
+            roll:111,
+            name:"SUMANT",
+            marks:100,
+            phone:["1234567890","11111111111"],
+            address:{houseno:"A12",city:"reactpur"}
+        }
+        console.log(s3.address.houseno);
+        list=
+        [
+        {
+            roll:111,
+            name:"SUMANT",
+            marks:100,
+            phone:["1234567890","11111111111"],
+            address:{houseno:"A12",city:"reactpur"}
+        },
+        {
+            roll:222,
+            name:"SUMAN",
+            marks:99,
+            phone:["1234567890","11111111111"],
+            address:{houseno:"A11",city:"reactnagar"}
+        }
+        ]
+        console.log(list);
+        console.log(list[0].roll);
+        console.log(list[0].roll,list[0].name);
+        
+    </script>
+</body>
+</html>

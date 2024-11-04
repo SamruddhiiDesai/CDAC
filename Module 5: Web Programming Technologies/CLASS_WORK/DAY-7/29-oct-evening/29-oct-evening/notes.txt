@@ -1,0 +1,190 @@
+Password show/hide 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <input type="password" placeholder="Enter Password" id="passwordField">
+   <button onclick="togglePassword()" id="btn">Show</button>
+
+   <script>
+      function togglePassword(){
+         var passwordField = document.getElementById("passwordField");
+         var button = document.getElementById("btn");
+         if(button.innerHTML === "Show"){
+            passwordField.setAttribute("type","text");
+            button.innerHTML = "Hide";
+         }
+         else{
+            passwordField.setAttribute("type","password");
+            button.innerHTML = "Show";
+         }
+         
+      }
+   </script>
+</body>
+</html>
+
+
+CHange style using DOM manipulation:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   
+   <h1 id="heading">THis is heading</h1>
+   <button id="btn" onclick="toggleVisibility()">Hide</button>
+
+   <script>
+      function toggleVisibility() {
+         var myHeading = document.getElementById("heading");
+         var myButton = document.getElementById("btn");
+         // background-color
+         
+         if(myButton.innerHTML==="Hide"){
+            myHeading.style.display = "none";
+            myButton.innerHTML = "Show";
+         }
+         else{
+            myHeading.style.display = "block";
+            myButton.innerHTML = "Hide";
+         }
+
+      }
+   </script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   
+   <h1 id="heading">THis is heading</h1>
+   <button id="btn" onclick="toggleVisibility()">Hide</button>
+
+   <script>
+      function toggleVisibility() {
+         var myHeading = document.getElementById("heading");
+         var myButton = document.getElementById("btn");
+         // background-color
+         
+         if(myButton.innerHTML==="Hide"){
+            myHeading.style.visibility = "hidden";
+            myButton.innerHTML = "Show";
+         }
+         else{
+            myHeading.style.visibility = "visible";
+            myButton.innerHTML = "Hide";
+         }
+
+      }
+   </script>
+</body>
+</html>
+
+
+Read an input value:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   
+   <input type="text" placeholder="Enter value" id="textfield">
+   <button id="btn" onclick="getValue()">Get Value</button>
+
+   <script>
+      function getValue(){
+         var textField = document.getElementById("textfield");
+         console.log(textField.value);
+      }
+   </script>
+</body>
+</html>
+
+
+Add:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   
+   <input type="text" placeholder="Enter 1st value" id="n1">
+   <br><br>
+   <input type="text" placeholder="Enter 2nd value" id="n2">
+   <br><br>
+   <button id="btn" onclick="sum()">Sum</button>
+   <h3 id="result"></h3>
+   <script>
+      function sum(){
+         var c = parseInt(document.getElementById("n1").value)
+                   + 
+                  parseInt(document.getElementById("n2").value);
+                  
+         document.getElementById("result").innerHTML="Sum is "+c;
+      }
+   </script>
+</body>
+</html>
+
+
+Validating input text:
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+
+   <input type="text" placeholder="Enter value" id="text">
+   <br><br>
+
+   <button id="btn" onclick="validate()">Validate Text</button>
+   <script>
+      function validate() {
+         // atleast 4 chars are there 
+         var textField = document.getElementById("text");
+         var text = textField.value;
+         if (text.length>=4) {
+            textField.style.borderColor = "green";
+         }
+         else{
+            textField.style.borderColor = "red";
+         }
+      }
+   </script>
+</body>
+
+</html>
+
+
+
+

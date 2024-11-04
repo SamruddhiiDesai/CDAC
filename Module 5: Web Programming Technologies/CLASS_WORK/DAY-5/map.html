@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         var arr=[10,20,30,40,50];
+
+        //resultarr=[12,22,32,42,52];
+        
+         //without map
+        // var newarr=[];
+        // for(var i=0;i<arr.length;i++){
+        //     newarr.push(arr[i]+2);
+        // }
+        
+        //withmap
+        var newarr=arr.map(value=>value+2);
+        console.log(newarr);
+        //foEach
+        arr.forEach((value)=>{console.log(value);});
+
+        //merge concat
+        var arr1=[10,20,30,40,50];
+        var arr2=[11,12,13,14,15];
+        var arrres=arr1.concat(arr2);
+        console.log(arrres);
+
+        //4 array concat
+        var arr3=[1,2,3,4,5];
+        var arr4=[21,22,23,24,25];
+
+        var studname="sam";
+        var studmarks=99;
+
+        var obj={studname,studmarks};
+        console.log(obj);
+
+
+    
+    </script>
+</body>
+</html>

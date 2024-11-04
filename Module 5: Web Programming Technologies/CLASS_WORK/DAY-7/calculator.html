@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"placeholder="num1" id="n1">
+    <input type="text"placeholder="num1" id="n2">
+    <button type="button"onclick="sum()">sum</button>
+    <input type="text" id="res" placeholder="Result" readonly>
+
+    <script>
+        function sum(){
+            var n1val=parseInt(document.getElementById("n2").value);
+            var n2val=parseInt(document.getElementById("n2").value);
+            var sum=n1val + n2val;
+            document.getElementById("res").value = sum;  
+
+        }
+    </script>
+</body>
+</html>
