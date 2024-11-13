@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="img/san.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Student Profiles</title>
+</head>
+<body>
+    <header class="bg-dark text-white d-flex flex-wrap align-items-center p-3">
+        <div class="symbol mr-3">
+            <img style="height: 60px; width: 60px; margin-left: 20px; border-radius: 10px;" src="img/imm.jpg" alt="Symbol" class="img-fluid">
+        </div>
+        <h3 style="color: rgb(0, 0, 0);font-family: fantasy;"  class="mr-auto">SANDBOX</h3>
+        <nav  class="navbar navbar-expand-lg navbar-light bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="projects.html">Project Listings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="profiles.html">Student Profiles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="login.html">Sign In</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div style="border-radius: 5px; margin-left: 5px; background: white; padding: 5px; margin-top: 10px; width: 400px; border: 1px solid black;">
+        <h6 style="margin-left: 10px; margin-top: 5px;"><b>Name :</b> Samruddhi Desai
+            <br><b>Education: </b> Btech Computer Science Engineering
+        </h6>
+    </div>
+
+    <main style="width: 600px;" class="container my-4">
+        <h2 style="color: black;"><b>Your Projects</b></h2>
+        <button class="btn btn-success mb-3" onclick="showProjectForm()">Add New Project</button>
+        
+        <div id="project-form" style="display: none;">
+            <div class="card shadow mx-auto" style="max-width: 800px;">
+                <div class="card-body">
+                    <h5 class="card-title">Add / Edit Project</h5>
+                    <form id="form">
+                        <div class="form-group">
+                            <label for="title">Project Title</label>
+                            <input type="text" class="form-control" id="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author Name</label>
+                            <input type="text" class="form-control" id="author"  required>
+                        </div>
+                        <div class="form-group">
+                            <label for="technologiesUsed">Technologies Used</label>
+                            <input type="text" class="form-control" id="technologiesUsed" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="languageUsed">Language Used</label>
+                            <input type="text" class="form-control" id="languageUsed" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageUrl">Project Image</label>
+                            <input type="text" class="form-control" id="imageUrl"  >
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Project Description</label>
+                            <textarea class="form-control" id="description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="githubLink">GitHub Link</label>
+                            <input type="url" class="form-control" id="githubLink">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Save Project</button>
+                        <button type="button" class="btn btn-secondary" onclick="hideProjectForm()">Cancel</button>
+                        <!-- <button id="updateButton">Update Project</button> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects-list">
+           
+        </div>
+    </main>
+
+    <script src="js/Profiles.js"></script>
+
+     <footer class="bg-dark text-white text-center p-3">
+        <p>&copy; 2024 Student Project Showcase. All rights reserved.</p>
+        <p>Contact Us: <a href="mailto:samruddhidesai44@gmail.com">samruddhidesai44@gmail.com</a> | Samruddhi Desai</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

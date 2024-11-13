@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="img/san.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Sign In</title>
+</head>
+<body>
+    <header class="bg-dark text-white d-flex flex-wrap align-items-center p-3">
+        <div class="symbol mr-3">
+            <img style="height: 60px; width: 60px; margin-left: 20px;border-radius: 10px;" src="img/imm.jpg" alt="Symbol" class="img-fluid">
+        </div>
+        <h3 style="color: rgb(0, 0, 0);font-family: fantasy;"  class="mr-auto">SANDBOX</h3>
+        <nav  class="navbar navbar-expand-lg navbar-light bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="projects.html">Project Listings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="profiles.html">Student Profiles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="login.html">Sign In</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main style="width: 100%; max-width: 600px; padding: 15px; margin: auto; background-color: #e3e3e3;">
+        <div class="card shadow mx-auto" style="background-color: #fff; max-width: 100%; padding: 25px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); margin-bottom: 20px;">
+            <div class="card-body" style="padding: 25px;">
+                <h2 class="card-title text-center" style="color: #007bff; font-size: 1.5rem; font-weight: bold; margin-bottom: 20px;">Sign In</h2>
+                <form>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="email" style="display: block; font-weight: bold; color: #343a40; margin-bottom: 5px;">Email:</label>
+                        <input type="email" id="email" class="form-control" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px;"required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="password" style="display: block; font-weight: bold; color: #343a40; margin-bottom: 5px;">Password:</label>
+                        <input type="password" id="password" class="form-control" style="width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 5px;" required>
+                    </div>
+                    <div class="form-check" style="margin-bottom: 15px;">
+                        <input type="checkbox" class="form-check-input" id="rememberMe" style="margin-right: 5px;">
+                        <label class="form-check-label" for="rememberMe" style="color: #343a40; font-size: 0.9rem;">Remember me</label>
+                    </div>
+                    <!-- <button  type="submit" class="btn btn-primary btn-block" style="background-color: #343a40; color: #fff; width: 100%; padding: 10px; font-size: 1rem; border: none; border-radius: 5px; cursor: pointer;">Login</button> -->
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #343a40; color: #fff; width: 100%; padding: 10px; font-size: 1rem; border: none; border-radius: 5px; cursor: pointer;"><a style="color: #fff;"  href="profiles.html">Login</a></button> 
+                </form>
+    
+                <div class="text-center mt-3" style="margin-top: 15px;">
+                    <button style="background-color: brown; color: white; width: 100%; padding: 10px; font-size: 1rem; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 10px;">
+                        <i class="fa fa-google"></i> Sign in with Google
+                    </button>
+                    <button  style="background-color: rgb(55, 141, 233); color: white; width: 100%; padding: 10px; font-size: 1rem; border: none; border-radius: 5px; cursor: pointer;">
+                        <i class="fa fa-facebook"></i> Sign in with Facebook
+                    </button>
+                </div>
+    
+                <p class="text-center mt-3" style="margin-top: 15px; font-size: 0.9rem; color: #343a40;">
+                    Don't have an account? <a href="signup.html" style="color: #007bff; text-decoration: none;">Sign Up</a>
+                </p>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="bg-dark text-white text-center p-3">
+        <p>&copy; 2024 Student Project Showcase. All rights reserved.</p>
+        <p>Contact Us: <a href="mailto:info@studentprojectshowcase.com">samruddhidesai44@gmail.com</a> | Samruddhi Desai</p>
+    </footer>
+    <script>
+        document.getElementById('signInForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const email = document.getElementById('email').value;
+    
+            // Regular expression  format
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+            console.log("Email is valid.");
+        
+        });
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

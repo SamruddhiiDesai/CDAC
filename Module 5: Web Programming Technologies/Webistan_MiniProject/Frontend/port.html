@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic reset for consistent styling across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #dddddd;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Profile Container */
+.profile-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Header */
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h1 {
+    font-size: 2em;
+    color: #0073e6;
+}
+
+.profile-header p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.profile-header a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.profile-header a:hover {
+    text-decoration: underline;
+}
+
+/* Profile Sections */
+.profile-section {
+    margin-bottom: 20px;
+}
+
+.profile-section h2 {
+    font-size: 1em;
+    color: #0073e6;
+    margin-bottom: 10px;
+}
+
+.profile-section h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.profile-section p,
+.profile-section ul {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.profile-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.profile-section ul li {
+    line-height: 1.6;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>Samruddhi Desai</h1>
+        <p>B.Tech in Computer Science Engineering, Shivaji University</p>
+        <p>Email: samruddhidesai44@gmail.com | <a href="#">GitHub</a> | <a href="#">LinkedIn</a></p>
+    </div>
+
+    <div class="profile-section">
+        <h2>Academic Achievements</h2>
+        <ul>
+            <li>Top 10% of the class</li>
+            <li>Recipient of the ABC Scholarship for Academic Excellence</li>
+        </ul>
+    </div>
+
+    <div class="profile-section">
+        <h2>Skills</h2>
+        <p><strong>Technical:</strong> Java, MySQL, HTML/CSS, JavaScript, React</p>
+        <p><strong>Soft Skills:</strong> Teamwork, problem-solving, adaptability</p>
+        <p><strong>Languages:</strong> Marathi, English</p>
+    </div>
+
+    <div class="profile-section">
+        <h2>Projects</h2>
+        <h3>Online Learning Platform</h3>
+        <p><strong>Technologies:</strong> Java, MySQL, HTML/CSS</p>
+        <p><strong>Description:</strong> Developed an online learning portal for students to access resources and assignments.</p>
+        <p><strong>Outcome:</strong> Streamlined course material access and boosted engagement.</p>
+    </div>
+
+
+    <div class="profile-section">
+        <h2>Certifications</h2>
+        <p>Google Data Analytics Certificate - Gained skills in data analysis, visualization, and project management</p>
+    </div>
+
+    <div class="profile-section">
+        <h2>Extracurricular Activities</h2>
+        <ul>
+            <li>District-level Kabaddi Player</li>
+            <li>Member, University Coding Club</li>
+        </ul>
+    </div>
+
+    <div class="profile-section">
+        <h2>Hobbies & Interests</h2>
+        <p>Trekking, traveling, exploring new technologies, and kabaddi.</p>
+    </div>
+
+    <button id="hide-button" style="background-color: #f44336; color: white; padding: 10px; border: none; border-radius: 4px;">
+        Hide
+    </button>
+</div>
+<script src="port.js"></script>
+</body>
+
+</html>
